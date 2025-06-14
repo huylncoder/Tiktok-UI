@@ -4,7 +4,12 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,400;0,500;0,600;0,700;1,300;1,400&display=swap');
 
 :root {
-    --primary: #fe2c55;
+    --primary-color: #fe2c55;
+    --bg-color-white: #ffffff;
+
+    //default layout
+    --default-layout-width: 1150px;
+    --default-layout-header-height: 60px;
 }
 
 * {
@@ -23,3 +28,6 @@ body {
     line-height: 1.5;
     text-rendering: optimizeSpeed;
 }
+
+
+
