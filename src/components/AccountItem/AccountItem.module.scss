@@ -1,0 +1,38 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    padding: 6px 16px;
+    text-decoration: none;
+    &:hover {
+        background-color: rgba(22, 24, 35, 0.03);
+    }
+}
+
+.imgAvatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.sugInfo {
+    flex: 1;
+    margin-left: 12px;
+    .sug-username {
+        font-size: 1.6rem;
+        color: var(--text-color);
+        line-height: 21px;
+        font-weight: 500;
+        .sug-checkBlue {
+            font-size: 1.5rem;
+            color: #1FD5EC;
+            margin-left: 6px;
+        }
+    }
+    .sug-nickname {
+        font-size: 1.4rem;
+        color: rgba(22, 24, 35, 0.5);
+        line-height: 18px;
+        font-weight: 400;
+    }
+}
