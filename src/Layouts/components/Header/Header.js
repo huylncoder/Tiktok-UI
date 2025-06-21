@@ -7,19 +7,20 @@ import Tippy from '@tippyjs/react/headless';
 import styles from './Header.module.scss';
 import imageLogo from '~/assets/img/index';
 
-import { Wrapper as PopperWrapper } from '~/components/Popper'
+import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem/AccountItem';
+import Button from '~/components/Button/Button';
 
 const cx = classNames.bind(styles);
 
 const Header = () => {
-    const [searchResult, setSearchResult] = useState([])
+    const [searchResult, setSearchResult] = useState([]);
 
     useEffect(() => {
         setTimeout(() => {
-            setSearchResult([])            
-        }, 0)
-    } , [])
+            setSearchResult([]);
+        }, 0);
+    }, []);
 
     return (
         <div className={cx('wrapper')}>
@@ -33,13 +34,13 @@ const Header = () => {
                 <Tippy
                     interactive={true}
                     visible={searchResult.length > 0}
-                    render={attrs => (
+                    render={(attrs) => (
                         <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                             <PopperWrapper>
                                 <h4 className={cx('search-title')}>Accounts</h4>
-                                <AccountItem/>
-                                <AccountItem/>
-                                <AccountItem/>
+                                <AccountItem />
+                                <AccountItem />
+                                <AccountItem />
                             </PopperWrapper>
                         </div>
                     )}
@@ -56,7 +57,10 @@ const Header = () => {
                     </div>
                 </Tippy>
 
-                <div className={cx('actions_header')}></div>
+                <div className={cx('actions-header')}>
+                    <Button text>Upload</Button>
+                    <Button primary>Log in</Button>
+                </div>
             </div>
         </div>
     );
