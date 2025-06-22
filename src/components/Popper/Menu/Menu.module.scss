@@ -1,0 +1,20 @@
+//menu wrapper
+.option-menu {
+    width: 224px;
+    //menu-item
+    .menu-item {
+        width: 100%;
+        font-weight: 600;
+        padding: 11px 16px;
+        justify-content: flex-start;
+        margin-left: 0px;
+        border-radius: 0;
+        &:hover {
+            background-color: rgba( 22, 24, 35, 0.03);  
+        }
+    }
+}
+
+.menu-wrapper {
+    padding-bottom: 8px;
+}

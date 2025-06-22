@@ -99,4 +99,16 @@
         }
     }
 
+    .actions-header {
+        display: flex;
+        .options {
+            font-size: 20px;
+            margin-left: 24px;
+            padding: 8px;
+            background: transparent;
+            border: none;
+            outline: none;
+        }
+    }
+
 }
