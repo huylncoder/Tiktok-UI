@@ -1,7 +1,15 @@
 import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleQuestion, faCircleXmark, faEarthAsia, faEllipsisVertical, faKeyboard, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import {
+    faCircleQuestion,
+    faCircleXmark,
+    faEarthAsia,
+    faEllipsisVertical,
+    faKeyboard,
+    faMagnifyingGlass,
+    faSpinner,
+} from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react/headless';
 
 import styles from './Header.module.scss';
@@ -14,11 +22,25 @@ import Menu from '~/components/Popper/Menu/Menu';
 
 const cx = classNames.bind(styles);
 
-
 const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faEarthAsia} />,
-        title: 'English'
+        title: 'English',
+        children: {
+            title: 'Language',
+            data: [
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English' ,
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Việt Nam' ,
+                }
+            ],
+        }
     },
     {
         icon: <FontAwesomeIcon icon={faCircleQuestion} />,
@@ -27,9 +49,9 @@ const MENU_ITEMS = [
     },
     {
         icon: <FontAwesomeIcon icon={faKeyboard} />,
-        title: 'Keyboard shortcuts'
+        title: 'Keyboard shortcuts',
     },
-]
+];
 
 const Header = () => {
     const [searchResult, setSearchResult] = useState([]);
@@ -39,6 +61,17 @@ const Header = () => {
             setSearchResult([]);
         }, 0);
     }, []);
+
+    //Handle
+    const handleMenuChange = (itemMenu) => {
+        switch(itemMenu.type) {
+            case 'language':
+                // xu ly gi do
+                break;
+            default:
+        }
+        
+    }
 
     return (
         <div className={cx('wrapper')}>
@@ -69,7 +102,7 @@ const Header = () => {
                             <FontAwesomeIcon icon={faCircleXmark} />
                         </button>
                         <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
-                        <button className={cx('btn-search')}>
+                        <button className={cx('btn-search')} onMouseDown={(e) => e.preventDefault()}>
                             <FontAwesomeIcon icon={faMagnifyingGlass} />
                         </button>
                     </div>
@@ -78,9 +111,7 @@ const Header = () => {
                 <div className={cx('actions-header')}>
                     <Button text>Upload</Button>
                     <Button primary>Log in</Button>
-                    <Menu
-                        items={MENU_ITEMS}
-                    >
+                    <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
                         <button className={cx('options')}>
                             <FontAwesomeIcon icon={faEllipsisVertical} />
                         </button>

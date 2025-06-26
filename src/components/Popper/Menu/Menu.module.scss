@@ -4,17 +4,40 @@
     //menu-item
     .menu-item {
         width: 100%;
+        line-height: 1.8rem;
         font-weight: 600;
         padding: 11px 16px;
         justify-content: flex-start;
         margin-left: 0px;
         border-radius: 0;
         &:hover {
-            background-color: rgba( 22, 24, 35, 0.03);  
+            background-color: rgba(22, 24, 35, 0.03);
         }
     }
 }
 
 .menu-wrapper {
     padding-bottom: 8px;
+}
+
+.header-menu {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    margin-top: -8px;
+    position: relative;
+    .back-btn {
+        font-size: 1.6rem;
+        padding: 6px 16px;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
+    .header-title {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 }

@@ -9,6 +9,7 @@
     height: 100vh;
     display: flex;
     background-color:var(--white-color);
+    padding: 0 var(--default-layout-horizontal-spacer);
 }
 
 .content {
