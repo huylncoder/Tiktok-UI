@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Tippy from '@tippyjs/react/headless';
+import HeadlessTippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
 import styles from './Menu.module.scss';
 
@@ -34,9 +34,11 @@ const Menu = ({ children, items = [], onChange = () => {} }) => {
         });
     };
     return (
-        <div>
-            <Tippy
+        <div className={cx('menu')}>
+            <HeadlessTippy
+                visible
                 interactive={true}
+                offset={[12, 10]}
                 placement="bottom-end"
                 delay={[0, 500]}
                 render={(attrs) => (
@@ -52,9 +54,10 @@ const Menu = ({ children, items = [], onChange = () => {} }) => {
                         </PopperWrapper>
                     </div>
                 )}
+                onHide={() => setHistoryMenu(prev => prev.slice(0, 1))}
             >
                 {children}
-            </Tippy>
+            </HeadlessTippy>
         </div>
     );
 };

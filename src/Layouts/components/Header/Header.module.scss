@@ -102,6 +102,24 @@
 
     .actions-header {
         display: flex;
+        align-items: center;
+        .action-btn {
+            font-size: 2.2rem;
+            color: #161823;
+            background-color: transparent;
+            padding: 8px 12px;
+            border: none;
+            cursor: pointer;
+
+        }
+        .avatar-user {
+            width: 35px;
+            height: 35px;
+            margin-left: 14px;
+            border-radius: 50%;
+            object-fit: cover;
+            cursor: pointer;
+        }
         .options {
             font-size: 20px;
             margin-left: 24px;
