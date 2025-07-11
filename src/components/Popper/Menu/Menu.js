@@ -36,7 +36,6 @@ const Menu = ({ children, items = [], onChange = () => {} }) => {
     return (
         <div className={cx('menu')}>
             <HeadlessTippy
-                visible
                 interactive={true}
                 offset={[12, 10]}
                 placement="bottom-end"

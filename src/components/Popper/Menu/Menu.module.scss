@@ -18,13 +18,13 @@
             background-color: rgba(22, 24, 35, 0.03);
         }
     }
+    .separate {
+        border-top: 1px solid rgba(22, 24, 35, 0.12);
+    }
 }
 
 .menu-wrapper {
     padding-bottom: 8px;
-    .separate {
-        border-top: 1px solid rgba(22, 24, 35, 0.12);
-    }
 }
 
 .header-menu {
@@ -37,8 +37,6 @@
         font-size: 1.6rem;
         padding: 6px 16px;
         background-color: transparent;
-        border: none;
-        outline: none;
         cursor: pointer;
     }
     .header-title {

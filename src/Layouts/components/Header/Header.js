@@ -13,19 +13,19 @@ import {
     faEllipsisVertical,
     faGear,
     faKeyboard,
-    faMagnifyingGlass,
     faSpinner,
     faUser,
 } from '@fortawesome/free-solid-svg-icons';
-import { faSquarePlus } from '@fortawesome/free-regular-svg-icons';
 
 import styles from './Header.module.scss';
-import imageLogo from '~/assets/img/index';
+import images from '~/assets/img/index';
 
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem/AccountItem';
 import Button from '~/components/Button/Button';
 import Menu from '~/components/Popper/Menu/Menu';
+import { MessageIcon, SearchIcon, SendIcon, UploadIcon } from '~/components/Icon';
+import Image from '~/components/Image/Image';
 
 const cx = classNames.bind(styles);
 
@@ -110,8 +110,8 @@ const Header = () => {
         <div className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('logo')}>
-                    <a href="/">
-                        <img src={imageLogo.logo} alt="logoTiktok" width="100%" />
+                    <a href="/" className={cx('logo-link')}>
+                        <Image src={images.logo} alt="Tiktok" width="100%" />
                     </a>
                 </div>
 
@@ -136,7 +136,7 @@ const Header = () => {
                         </button>
                         <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
                         <button className={cx('btn-search')} onMouseDown={(e) => e.preventDefault()}>
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
+                            <SearchIcon />
                         </button>
                     </div>
                 </HeadlessTippy>
@@ -145,15 +145,18 @@ const Header = () => {
                     {currentUser ? (
                         <>
                             <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
-                                <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faSquarePlus} />
-                                </button>
-                                {/* <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faPaperPlane} />
-                                </button>
-                                <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faMessage} />
-                                </button> */}
+                                <>
+                                    <button className={cx('action-btn')}>
+                                        <UploadIcon />
+                                    </button>
+                                    <button className={cx('action-btn')}>
+                                        <SendIcon />
+                                    </button>
+                                    <button className={cx('action-btn')}>
+                                        <MessageIcon />
+                                        <span className={cx('badge')}>12</span>
+                                    </button>
+                                </>
                             </Tippy>
                         </>
                     ) : (
@@ -164,11 +167,7 @@ const Header = () => {
                     )}
                     <Menu items={currentUser ? MENU_USER : MENU_OPTION} onChange={handleMenuChange}>
                         {currentUser ? (
-                            <img
-                                className={cx('avatar-user')}
-                                src="https://p16-sign-sg.tiktokcdn.com/tos-alisg-avt-0068/6ea6d2b161a5111b613eac0c7ea3d225~tplv-tiktokx-cropcenter:1080:1080.jpeg?dr=14579&refresh_token=204f1fbc&x-expires=1751288400&x-signature=BUjBEO9KOlnudmaABJ2iG0GF%2Btk%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=my"
-                                alt="anh moi"
-                            />
+                            <Image className={cx('avatar-user')} src={images.avatar} alt="anh avatar" />
                         ) : (
                             <button className={cx('options')}>
                                 <FontAwesomeIcon icon={faEllipsisVertical} />
