@@ -4,13 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 
 import image from '~/assets/img';
+import Image from '~/components/Image/Image';
 
 const cx = classNames.bind(styles);
 
 const AccountItem = () => {
     return (
         <a className={cx('wrapper')} href="/">
-            <img
+            <Image
                 className={cx('imgAvatar')}
                 src={image.avatar}
                 alt="songtungmtp"
