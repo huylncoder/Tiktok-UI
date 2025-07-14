@@ -35,7 +35,12 @@
         color: rgba(22, 24, 35, 0.34);
     }
     .loading {
-        display: none;
+        animation: spinner 0.8s linear infinite;
+    }
+    @keyframes spinner {
+        to {
+            transform: translateY(-50%) rotate(360deg);
+        }
     }
     .btn-search {
         display: flex;
