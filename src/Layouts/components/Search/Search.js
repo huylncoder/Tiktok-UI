@@ -9,6 +9,9 @@ import styles from './Search.module.scss';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem/AccountItem';
 import { SearchIcon } from '~/components/Icon';
+import { useDebounce } from '~/hooks';
+
+import * as searchSevices from '~/services/searchSevices'
 
 const cx = classNames.bind(styles);
 
@@ -16,44 +19,45 @@ const Search = () => {
     const [searchValue, setSearchValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
     const [showResult, setShowResult] = useState(true);
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
     const inputRef = useRef();
 
+    const debounced = useDebounce(searchValue, 600);
+
     useEffect(() => {
-        if(!searchValue.trim()) {
-            setSearchResult([])
-            setLoading (false)
+        if (!debounced.trim()) {
+            setSearchResult([]);
+            setLoading(false);
             return;
         }
 
-        setLoading(true);
+        // tách gọi API bên ngoài chỉ import sử dụng thôi
+        const fetchApi = async () => {
+            setLoading(true); 
 
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
-            .then(res => res.json())
-            .then(res => {
-                setSearchResult(res.data)
-                setLoading(false)
-            })
-            .catch(() => {
-                setLoading(false)
-            })
-    }, [searchValue]);
-    
+            const result = await searchSevices.search(debounced)
+            setSearchResult(result)
+
+            setLoading(false);
+        }   
+        fetchApi()
+
+    }, [debounced]);
+
     // hàm cần tối ưu (usecallback)
     const handleHideResult = () => {
-        setShowResult(false)
-    }
+        setShowResult(false);
+    };
 
     const handleChange = (e) => {
-        const value = e.target.value
+        const value = e.target.value;
         // Nếu chuỗi rỗng VÀ có chứa khoảng trắng thì không cho phép thêm space
-        if(!value.trim() && value.includes(' ')) {
+        if (!value.trim() && value.includes(' ')) {
             return;
         }
-        setSearchValue(value)
+        setSearchValue(value);
+    };
 
-    }
-    
     return (
         <HeadlessTippy
             interactive={true}
@@ -62,7 +66,7 @@ const Search = () => {
                 <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                     <PopperWrapper>
                         <h4 className={cx('search-title')}>Accounts</h4>
-                        {searchResult.map(result => (
+                        {searchResult.map((result) => (
                             <AccountItem key={result.id} data={result} />
                         ))}
                     </PopperWrapper>
