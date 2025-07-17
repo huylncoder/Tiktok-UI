@@ -51,11 +51,10 @@ const Search = () => {
 
     const handleChange = (e) => {
         const value = e.target.value;
-        // Nếu chuỗi rỗng VÀ có chứa khoảng trắng thì không cho phép thêm space
-        if (!value.trim() && value.includes(' ')) {
-            return;
+        // Nếu từ khoá không bắt đầu bằng space thì setSearchValue
+        if (!value.startsWith(' ')) {
+            setSearchValue(value);
         }
-        setSearchValue(value);
     };
 
     return (
@@ -95,7 +94,7 @@ const Search = () => {
                     </button>
                 )}
                 {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
-                <button className={cx('btn-search')} onMouseDown={(e) => e.preventDefault()}>
+                <button className={cx('btn-search')} onMouseDown={e => e.preventDefault()}>
                     <SearchIcon />
                 </button>
             </div>

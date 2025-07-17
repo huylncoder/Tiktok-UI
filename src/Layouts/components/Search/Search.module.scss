@@ -21,6 +21,7 @@
         color: var(--text-color);
         background-color: transparent;
         caret-color: var(--primary-color);
+        font-family: var(--font-family);
     }
     input:not(:placeholder-shown) ~ .btn-search {
         color: var(--text-color);

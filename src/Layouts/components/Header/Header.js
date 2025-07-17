@@ -1,5 +1,6 @@
-import classNames from 'classnames/bind';
+import { Link } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
+import classNames from 'classnames/bind';
 import 'tippy.js/dist/tippy.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -16,6 +17,7 @@ import {
 import styles from './Header.module.scss';
 import images from '~/assets/img/index';
 
+import routesConfig from '~/config/routes'
 import Button from '~/components/Button/Button';
 import Menu from '~/components/Popper/Menu/Menu';
 import { MessageIcon, SendIcon, UploadIcon } from '~/components/Icon';
@@ -99,9 +101,9 @@ const Header = () => {
             <div className={cx('inner')}>
 
                 <div className={cx('logo')}>
-                    <a href="/" className={cx('logo-link')}>
+                    <Link to={routesConfig.home} className={cx('logo-link')}>
                         <Image src={images.logo} alt="Tiktok" width="100%" />
-                    </a>
+                    </Link>
                 </div>
 
                 <Search />

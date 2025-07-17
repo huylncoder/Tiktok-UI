@@ -9,7 +9,7 @@ import HeaderMenu from './HeaderMenu';
 
 const cx = classNames.bind(styles);
 
-const Menu = ({ children, items = [], onChange = () => {} }) => {
+const Menu = ({ children, items = [], onChange = () => {}, hideOnClick = false }) => {
     const [historyMenu, setHistoryMenu] = useState([{ data: items }]);
     const currentMenu = historyMenu[historyMenu.length - 1];
 
@@ -40,6 +40,7 @@ const Menu = ({ children, items = [], onChange = () => {} }) => {
                 offset={[12, 10]}
                 placement="bottom-end"
                 delay={[0, 500]}
+                hideOnClick = {hideOnClick}
                 render={(attrs) => (
                     <div className={cx('option-menu')} tabIndex="-1" {...attrs}>
                         <PopperWrapper className={cx('menu-wrapper')}>

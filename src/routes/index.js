@@ -1,3 +1,5 @@
+import routesConfig from '~/config/routes'
+
 // pages
 import Home from '~/pages/Home/Home';
 import Following from '~/pages/Following/Following';
@@ -9,10 +11,10 @@ import HeaderOnly from '~/Layouts/HeaderOnly/HeaderOnly';
 
 
 const publicRoutes = [
-    {path: '/', component: Home},
-    {path: '/following', component: Following},
-    {path: '/upload', component: Upload, layout: HeaderOnly},
-    {path: '/profile/:nickname', component: Profile},
+    {path: routesConfig.home, component: Home},
+    {path: routesConfig.following, component: Following},
+    {path: routesConfig.upload, component: Upload, layout: HeaderOnly},
+    {path: routesConfig.profile, component: Profile},
 
 ]
 
