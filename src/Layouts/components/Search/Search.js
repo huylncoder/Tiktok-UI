@@ -11,7 +11,7 @@ import AccountItem from '~/components/AccountItem/AccountItem';
 import { SearchIcon } from '~/components/Icon';
 import { useDebounce } from '~/hooks';
 
-import * as searchSevices from '~/services/searchSevices'
+import * as searchSevices from '~/services/searchSevice'
 
 const cx = classNames.bind(styles);
 

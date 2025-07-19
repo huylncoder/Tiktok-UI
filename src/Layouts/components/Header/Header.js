@@ -17,12 +17,12 @@ import {
 import styles from './Header.module.scss';
 import images from '~/assets/img/index';
 
-import routesConfig from '~/config/routes'
+import config from '~/config'
 import Button from '~/components/Button/Button';
 import Menu from '~/components/Popper/Menu/Menu';
 import { MessageIcon, SendIcon, UploadIcon } from '~/components/Icon';
 import Image from '~/components/Image/Image';
-import Search from '../Search/Search';
+import Search from '~/layouts//components/Search/Search';
 
 const cx = classNames.bind(styles);
 
@@ -101,7 +101,7 @@ const Header = () => {
             <div className={cx('inner')}>
 
                 <div className={cx('logo')}>
-                    <Link to={routesConfig.home} className={cx('logo-link')}>
+                    <Link to={config.routes.home} className={cx('logo-link')}>
                         <Image src={images.logo} alt="Tiktok" width="100%" />
                     </Link>
                 </div>
