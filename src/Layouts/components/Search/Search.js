@@ -11,21 +11,21 @@ import AccountItem from '~/components/AccountItem/AccountItem';
 import { SearchIcon } from '~/components/Icon';
 import { useDebounce } from '~/hooks';
 
-import * as searchSevices from '~/services/searchSevice'
+import * as searchSevices from '~/services/searchSevice';
 
 const cx = classNames.bind(styles);
 
 const Search = () => {
     const [searchValue, setSearchValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
-    const [showResult, setShowResult] = useState(true);
+    const [showResult, setShowResult] = useState(false);
     const [loading, setLoading] = useState(false);
     const inputRef = useRef();
 
-    const debounced = useDebounce(searchValue, 600);
+    const debouncedValue = useDebounce(searchValue, 600);
 
     useEffect(() => {
-        if (!debounced.trim()) {
+        if (!debouncedValue.trim()) {
             setSearchResult([]);
             setLoading(false);
             return;
@@ -33,21 +33,15 @@ const Search = () => {
 
         // tách gọi API bên ngoài chỉ import sử dụng thôi
         const fetchApi = async () => {
-            setLoading(true); 
+            setLoading(true);
 
-            const result = await searchSevices.search(debounced)
-            setSearchResult(result)
+            const result = await searchSevices.search(debouncedValue);
+            setSearchResult(result);
 
             setLoading(false);
-        }   
-        fetchApi()
-
-    }, [debounced]);
-
-    // hàm cần tối ưu (usecallback)
-    const handleHideResult = () => {
-        setShowResult(false);
-    };
+        };
+        fetchApi();
+    }, [debouncedValue]);
 
     const handleChange = (e) => {
         const value = e.target.value;
@@ -55,6 +49,11 @@ const Search = () => {
         if (!value.startsWith(' ')) {
             setSearchValue(value);
         }
+    };
+
+    const handleClear = () => {
+        setSearchValue('');
+        inputRef.current.focus();
     };
 
     return (
@@ -74,7 +73,7 @@ const Search = () => {
                         </PopperWrapper>
                     </div>
                 )}
-                onClickOutside={handleHideResult}
+                onClickOutside={() => setShowResult(false)}
             >
                 <div className={cx('search-header')}>
                     <input
@@ -86,18 +85,12 @@ const Search = () => {
                         onFocus={() => setShowResult(true)}
                     />
                     {!!searchValue && !loading && (
-                        <button
-                            className={cx('btn-clear')}
-                            onClick={() => {
-                                setSearchValue('');
-                                inputRef.current.focus();
-                            }}
-                        >
+                        <button className={cx('btn-clear')} onClick={handleClear}>
                             <FontAwesomeIcon icon={faCircleXmark} />
                         </button>
                     )}
                     {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
-                    <button className={cx('btn-search')} onMouseDown={e => e.preventDefault()}>
+                    <button className={cx('btn-search')} onMouseDown={(e) => e.preventDefault()}>
                         <SearchIcon />
                     </button>
                 </div>

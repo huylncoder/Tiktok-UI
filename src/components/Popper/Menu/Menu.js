@@ -14,7 +14,7 @@ const Menu = ({ children, items = [], onChange = () => {}, hideOnClick = false }
     const [historyMenu, setHistoryMenu] = useState([{ data: items }]);
     const currentMenu = historyMenu[historyMenu.length - 1];
     
-    //cần tối ưu hàm này
+    // Hàm này xử lý việc render các mục trong menu
     const renderItem = () => {
         return currentMenu.data.map((item, index) => {
             const isParent = !!item.children;
@@ -34,6 +34,10 @@ const Menu = ({ children, items = [], onChange = () => {}, hideOnClick = false }
             );
         });
     };
+
+    // Hàm này xử lý việc reset về menu đầu tiên khi tippy bị ẩn
+    const handleResetToFirstPage = () => setHistoryMenu(prev => prev.slice(0, 1))
+
     return (
         <div className={cx('menu')}>
             <HeadlessTippy
@@ -42,6 +46,7 @@ const Menu = ({ children, items = [], onChange = () => {}, hideOnClick = false }
                 placement="bottom-end"
                 delay={[0, 500]}
                 hideOnClick = {hideOnClick}
+                // Hàm này xử lý việc hiển thị nội dung của menu 
                 render={(attrs) => (
                     <div className={cx('option-menu')} tabIndex="-1" {...attrs}>
                         <PopperWrapper className={cx('menu-wrapper')}>
@@ -55,7 +60,7 @@ const Menu = ({ children, items = [], onChange = () => {}, hideOnClick = false }
                         </PopperWrapper>
                     </div>
                 )}
-                onHide={() => setHistoryMenu(prev => prev.slice(0, 1))}
+                onHide={handleResetToFirstPage}
             >
                 {children}
             </HeadlessTippy>
