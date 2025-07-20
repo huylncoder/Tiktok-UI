@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types'
 import HeadlessTippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
 import styles from './Menu.module.scss';
@@ -12,7 +13,7 @@ const cx = classNames.bind(styles);
 const Menu = ({ children, items = [], onChange = () => {}, hideOnClick = false }) => {
     const [historyMenu, setHistoryMenu] = useState([{ data: items }]);
     const currentMenu = historyMenu[historyMenu.length - 1];
-
+    
     //cần tối ưu hàm này
     const renderItem = () => {
         return currentMenu.data.map((item, index) => {
@@ -46,7 +47,7 @@ const Menu = ({ children, items = [], onChange = () => {}, hideOnClick = false }
                         <PopperWrapper className={cx('menu-wrapper')}>
                             {historyMenu.length > 1 && (
                                 <HeaderMenu
-                                    title="Language"
+                                    title={currentMenu.title}
                                     onBack={() => setHistoryMenu((prev) => prev.slice(0, prev.length - 1))}
                                 />
                             )}
@@ -61,5 +62,12 @@ const Menu = ({ children, items = [], onChange = () => {}, hideOnClick = false }
         </div>
     );
 };
+
+Menu.prototype = {
+    children: PropTypes.node.isRequired,
+    items: PropTypes.array,
+    onChange: PropTypes.func,
+    hideOnClick: PropTypes.bool,
+}
 
 export default Menu;
