@@ -1,0 +1,46 @@
+.wrapper {
+    min-width: 320px;
+    min-height: 182px;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    .follow-btn {
+        border-radius: 5px;
+    }
+}
+
+.sug-info {
+    margin-top: 12px;
+    color: var(--text-color);
+    .nickname {
+        font-size: 1.8rem;
+        .checkBlue {
+            margin-left: 4px;
+            font-size: 1.4rem;
+            color: #20d5ec;
+        }
+    }
+    .fullname {
+        font-size: 1.4rem;
+        color: var(--text-color);
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .analytics {
+        margin-top: 10px;
+        font-size: 1.8rem;
+        .value ~ .value {
+            margin-left: 20px;
+        }
+    }
+
+}

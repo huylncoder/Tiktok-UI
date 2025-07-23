@@ -49,7 +49,6 @@
 
 html {
     font-size: 62.5%;
-    font-family: var(--font-family);
 }
 
 // Scrollbar CSS
@@ -69,6 +68,7 @@ html *::-webkit-scrollbar-track {
 }
 
 body {
+    font-family: var(--font-family);
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;

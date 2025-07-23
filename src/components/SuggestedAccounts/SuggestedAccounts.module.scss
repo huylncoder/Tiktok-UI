@@ -1,0 +1,50 @@
+.wrapper {
+    border-top: 1px solid #e3e3e4;
+    .label {
+        padding: 8px;
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+    .more-btn {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #fe2c55;
+        padding: 8px;
+        cursor: pointer;
+        user-select: none;
+    }
+}
+
+.account-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.sug-info {
+    flex: 1;
+    margin-left: 12px;
+    .nickname {
+        font-size: 1.6rem;
+        color: var(--text-color);
+        line-height: 1;
+        .checkBlue {
+            margin-left: 4px;
+            font-size: 1.4rem;
+            color: #20d5ec;
+        }
+    }
+    .fullname {
+        font-size: 1.2rem;
+        color: var(--text-color);
+        font-family: Arial, Helvetica, sans-serif;
+    }
+}
